@@ -1,0 +1,26 @@
+{
+  "Turkey": {
+    "visaFreeCountries": 110,
+    "eVisaAvailable": true,
+    "passportRank": 54,
+    "note": "Turkish citizens can travel to many countries visa-free including Japan, South Korea, and most of South America."
+  },
+  "Germany": {
+    "visaFreeCountries": 191,
+    "eVisaAvailable": true,
+    "passportRank": 2,
+    "note": "German passport allows access to almost all European and many Asian countries without a visa."
+  },
+  "United States": {
+    "visaFreeCountries": 187,
+    "eVisaAvailable": true,
+    "passportRank": 6,
+    "note": "U.S. passport holders enjoy visa-free access to most countries in Europe, Asia, and the Americas."
+  },
+  "Argentina": {
+    "visaFreeCountries": 170,
+    "eVisaAvailable": true,
+    "passportRank": 19,
+    "note": "Argentine passport grants visa-free access to much of Europe and Latin America."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/VisaPage",
+    "pages/WelcomePage",
+    "pages/ComparisonPage",
+    "pages/VisaDetailPage"
+  ]
+}
