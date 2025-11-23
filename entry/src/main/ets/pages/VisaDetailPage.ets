@@ -1,6 +1,4 @@
-import { router } from '@kit.ArkUI'
 import { CountryVisaInfo } from '../model/CountryVisaInfo'
-import { getParams } from '../utils/RouterUtils'
 
 @Entry
 @Component
@@ -8,8 +6,10 @@ struct VisaDetailPage {
   @State country: CountryVisaInfo = new CountryVisaInfo('Turkey', 54, 110, 55, 28, 'turkey')
 
   aboutToAppear() {
-    let paramObject = getParams() as CountryVisaInfo
-    console.error('tag',paramObject.countryName)
+    const router = this.getUIContext().getRouter()
+    const paramObject = router.getParams() as CountryVisaInfo
+
+    console.error('tag', paramObject.countryName)
     this.country = paramObject
   }
 
@@ -19,12 +19,13 @@ struct VisaDetailPage {
         Image($r('app.media.back_arrow'))
           .width(24)
           .height(24)
-          .onClick(() => router.back())
+          .onClick(() => {
+            this.getUIContext().getRouter().back()
+          })
       }
       .align(Alignment.Start)
 
-      Row({space: 10})
-      {
+      Row({space: 10}) {
         Image($r(`app.media.${this.country.mediaName}`))
           .width(30)
           .height(30)
@@ -32,8 +33,7 @@ struct VisaDetailPage {
 
         Blank()
 
-        Column({space: 4})
-        {
+        Column({space: 4}) {
           Text(this.country.countryName)
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
@@ -56,37 +56,19 @@ struct VisaDetailPage {
         .margin({top: 10, bottom: 10})
 
       Column({space: 6}) {
-        Row({space: 4})
-        {
-          Circle()
-            .width(10)
-            .height(10)
-            .fill(Color.Green)
-
-          Text(`No visa required : ${this.country.noVisaCountries}`)
-            .fontSize(14)
+        Row({space: 4}) {
+          Circle().width(10).height(10).fill(Color.Green)
+          Text(`No visa required : ${this.country.noVisaCountries}`).fontSize(14)
         }
 
-        Row({space: 4})
-        {
-          Circle()
-            .width(10)
-            .height(10)
-            .fill(Color.Red)
-
-          Text(`Visa required : ${this.country.visaCountries}`)
-            .fontSize(14)
+        Row({space: 4}) {
+          Circle().width(10).height(10).fill(Color.Red)
+          Text(`Visa required : ${this.country.visaCountries}`).fontSize(14)
         }
 
-        Row({space: 4})
-        {
-          Circle()
-            .width(10)
-            .height(10)
-            .fill(Color.Yellow)
-
-          Text(`E-Visa required : ${this.country.eVisaCountries}`)
-            .fontSize(14)
+        Row({space: 4}) {
+          Circle().width(10).height(10).fill(Color.Yellow)
+          Text(`E-Visa required : ${this.country.eVisaCountries}`).fontSize(14)
         }
       }
       .alignItems(HorizontalAlign.Start)
@@ -98,5 +80,3 @@ struct VisaDetailPage {
     .width('90%')
   }
 }
-
-

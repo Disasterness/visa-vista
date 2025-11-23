@@ -1,6 +1,5 @@
-import { router, ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute, prompt } from '@kit.ArkUI';
-import { CountryVisaInfo } from '../model/CountryVisaInfo';
-import { routePageWithObjectParams } from '../utils/RouterUtils';
+import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute, prompt } from '@kit.ArkUI'
+import { CountryVisaInfo } from '../model/CountryVisaInfo'
 import { VisaDataViewModel } from '../viewmodel/VisaDataViewModel'
 
 @Entry
@@ -34,28 +33,32 @@ struct VisaPage {
 
     this.maxSelectionReached = newSelectedList.length >= 2
     this.selectedCountryList = newSelectedList
-    console.log('Selected countries:', this.selectedCountryList.map(c => c.countryName))
+    console.info('Selected countries:', this.selectedCountryList.map(c => c.countryName))
   }
 
   navigateBasedOnSelection() {
+    const r = this.getUIContext().getRouter()
+
     if (this.selectedCountryList.length === 1) {
-      routePageWithObjectParams(
-        'pages/VisaDetailPage',
-         this.selectedCountryList[0]
-      )
+      r.pushUrl({
+        url: 'pages/VisaDetailPage',
+        params: this.selectedCountryList[0]
+      })
+      return
     }
-    else if (this.selectedCountryList.length === 2) {
-      router.pushUrl({
+
+    if (this.selectedCountryList.length === 2) {
+      r.pushUrl({
         url: 'pages/ComparisonPage',
         params: {
           selectedCountries: JSON.stringify(this.selectedCountryList),
           countries: this.selectedCountryList
         }
-      });
+      })
+      return
     }
-    else {
-      prompt.showToast({ message: 'Please select 1 or 2 countries', duration: 2000 })
-    }
+
+    prompt.showToast({ message: 'Please select 1 or 2 countries', duration: 2000 })
   }
 
   isCheckboxDisabled(item: CountryVisaInfo): boolean {
@@ -69,7 +72,7 @@ struct VisaPage {
         Image($r('app.media.back_arrow'))
           .width(24)
           .height(24)
-          .onClick(() => router.back())
+          .onClick(() => this.getUIContext().getRouter().back())
       }
       .align(Alignment.Start)
 
@@ -88,8 +91,7 @@ struct VisaPage {
             this.buildCountryRow(item)
           }
           .width('80%')
-          .onClick(() => {
-          })
+          .onClick(() => {})
           .margin({ bottom: 10})
         }, (item: string) => item);
       }

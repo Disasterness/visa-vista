@@ -1,4 +1,3 @@
-import { router } from '@kit.ArkUI'
 import { CountryVisaInfo } from '../model/CountryVisaInfo'
 import { JSON } from '@kit.ArkTS'
 
@@ -11,16 +10,16 @@ struct ComparisonPage {
   ]
 
   aboutToAppear() {
-    const params = router.getParams() as Record<string, Object>;
+    const params = this.getUIContext().getRouter().getParams() as Record<string, Object>
     if (params && params['selectedCountries']) {
-        try {
-          const parsedCountries = JSON.parse(params['selectedCountries'] as string) as CountryVisaInfo[]
-          this.selectedCountries = parsedCountries
-          console.error('tag','JSON parsed:', this.selectedCountries)
-        }
-        catch (error) {
-          console.error('JSON parse error:', error)
-        }
+      try {
+        const parsedCountries = JSON.parse(params['selectedCountries'] as string) as CountryVisaInfo[]
+        this.selectedCountries = parsedCountries
+        console.error('JSON parsed:', this.selectedCountries)
+      }
+      catch (error) {
+        console.error('JSON parse error:', error)
+      }
     }
   }
 
@@ -29,7 +28,9 @@ struct ComparisonPage {
       Image($r('app.media.back_arrow'))
         .width(24)
         .height(24)
-        .onClick(() => router.back())
+        .onClick(() => {
+          this.getUIContext().getRouter().back()
+        })
         .padding({ bottom: 10 })
 
       Row()

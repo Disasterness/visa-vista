@@ -1,20 +1,15 @@
-// WelcomePage.ets
-import { router } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct WelcomePage {
 
   build() {
     Column() {
-      // Top Title
       Text('VisaVista')
         .fontSize(26)
         .fontWeight(FontWeight.Bold)
         .margin({ top: 10 })
         .align(Alignment.Center)
 
-      // Subtitle
       Text('Know Where You Stand')
         .fontSize(10)
         .fontColor(Color.Gray)
@@ -22,13 +17,13 @@ struct WelcomePage {
         .margin({ top: 1, bottom: 20 })
         .align(Alignment.Center)
 
-      // Center Image (Clickable)
       Image($r('app.media.passportImage'))
         .width(85)
         .height(85)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/VisaPage' })
-          // Navigate to VisaPage
+          this.getUIContext().getRouter().pushUrl({
+            url: 'pages/VisaPage'
+          })
         })
         .align(Alignment.Center)
 
@@ -37,7 +32,6 @@ struct WelcomePage {
         .fontColor(Color.Gray)
         .margin({ top: 10 })
         .align(Alignment.Center)
-
     }
     .width('100%')
     .height('100%')
