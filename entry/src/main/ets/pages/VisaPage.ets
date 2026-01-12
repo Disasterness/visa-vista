@@ -1,6 +1,16 @@
-import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute, prompt } from '@kit.ArkUI'
+import { ArcList, ArcListItem, ArcListAttribute, ArcListItemAttribute, PromptAction } from '@kit.ArkUI'
 import { CountryVisaInfo } from '../model/CountryVisaInfo'
 import { VisaDataViewModel } from '../viewmodel/VisaDataViewModel'
+
+interface ComparisonPageParams {
+  selectedCountries: string,
+  countries: CountryVisaInfo[]
+}
+
+@Builder
+export function VisaPageBuilder() {
+  VisaPage()
+}
 
 @Entry
 @Component
@@ -9,6 +19,9 @@ struct VisaPage {
   visaVm: VisaDataViewModel = new VisaDataViewModel();
   @State selectedCountryList: CountryVisaInfo[] = []
   @State maxSelectionReached: boolean = false
+
+  pathStack: NavPathStack = new NavPathStack()
+  promptAction: PromptAction = this.getUIContext().getPromptAction();
 
   aboutToAppear() {
     this.countryList = this.visaVm.getList()
@@ -23,7 +36,7 @@ struct VisaPage {
           newSelectedList.push(item)
         } else {
           this.maxSelectionReached = true
-          prompt.showToast({ message: 'Maximum 2 countries can be selected', duration: 2000 })
+          this.promptAction.openToast({ message: 'Maximum 2 countries can be selected', duration: 2000 })
           return
         }
       }
@@ -37,28 +50,22 @@ struct VisaPage {
   }
 
   navigateBasedOnSelection() {
-    const r = this.getUIContext().getRouter()
 
     if (this.selectedCountryList.length === 1) {
-      r.pushUrl({
-        url: 'pages/VisaDetailPage',
-        params: this.selectedCountryList[0]
-      })
+      this.pathStack.pushPathByName('VisaDetailPage', this.selectedCountryList[0])
       return
     }
 
     if (this.selectedCountryList.length === 2) {
-      r.pushUrl({
-        url: 'pages/ComparisonPage',
-        params: {
-          selectedCountries: JSON.stringify(this.selectedCountryList),
-          countries: this.selectedCountryList
-        }
-      })
+      const params: ComparisonPageParams = {
+        selectedCountries: JSON.stringify(this.selectedCountryList),
+        countries: this.selectedCountryList
+      }
+      this.pathStack.pushPathByName('ComparisonPage', params)
       return
     }
 
-    prompt.showToast({ message: 'Please select 1 or 2 countries', duration: 2000 })
+    this.promptAction.openToast({ message: 'Please select 1 or 2 countries', duration: 2000 })
   }
 
   isCheckboxDisabled(item: CountryVisaInfo): boolean {
@@ -67,49 +74,58 @@ struct VisaPage {
   }
 
   build() {
-    Column() {
-      Row() {
-        Image($r('app.media.back_arrow'))
-          .width(24)
-          .height(24)
-          .onClick(() => this.getUIContext().getRouter().back())
-      }
-      .align(Alignment.Start)
+    NavDestination() {
+      Column() {
+        Row() {
+          Image($r('app.media.back_arrow'))
+            .width(24)
+            .height(24)
+            .onClick(() => this.pathStack.pop())
+        }
+        .align(Alignment.Start)
 
-      Text('Select Countries to Compare')
-        .fontSize(14)
-        .fontWeight(FontWeight.Bolder)
-        .fontColor(Color.White)
-        .padding({left: 16, right: 16})
-        .width('80%')
-
-      ArcList({
-        initialIndex: 0
-      }) {
-        ForEach(this.countryList, (item: CountryVisaInfo, index) => {
-          ArcListItem() {
-            this.buildCountryRow(item)
-          }
+        Text('Select Countries to Compare')
+          .fontSize(14)
+          .fontWeight(FontWeight.Bolder)
+          .fontColor(Color.White)
+          .padding({left: 16, right: 16})
           .width('80%')
-          .onClick(() => {})
-          .margin({ bottom: 10})
-        }, (item: string) => item);
-      }
-      .scrollBar(BarState.Off)
-      .height('50%')
-      .width('90%')
 
-      Image($r('app.media.passport_compare'))
-        .width(40)
-        .height(40)
-        .margin({ top: 10, bottom: 1})
-        .align(Alignment.Center)
-        .onClick(() => {
-          this.navigateBasedOnSelection()
-        })
+        ArcList({
+          initialIndex: 0
+        }) {
+          ForEach(this.countryList, (item: CountryVisaInfo) => {
+            ArcListItem() {
+              this.buildCountryRow(item)
+            }
+            .width('80%')
+            .margin({ bottom: 10})
+          }, (item: CountryVisaInfo) => item.countryName);
+        }
+        .scrollBar(BarState.Off)
+        .height('50%')
+        .width('90%')
+
+        Image($r('app.media.passport_compare'))
+          .width(40)
+          .height(40)
+          .margin({ top: 10, bottom: 1})
+          .align(Alignment.Center)
+          .onClick(() => {
+            this.navigateBasedOnSelection()
+          })
+      }
+      .width('100%')
+      .height('100%')
     }
+    .onReady((context: NavDestinationContext) => {
+      this.pathStack = context.pathStack;
+    })
     .width('100%')
     .height('100%')
+    .hideTitleBar(true)
+
+
   }
 
   @Builder

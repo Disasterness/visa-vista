@@ -29,7 +29,7 @@ VisaVista is a HarmonyOS-based ArkTS application that enables users to explore a
 - **Tools**: DevEco Studio, Simulator, Huawei Watch 5 real device
 
 
-## Directory Structure
+# Directory Structure
 
 ```
 entry/
@@ -61,7 +61,7 @@ entry/
 
 - Huawei Watch 5
 
-# Licence
+# License
 
 VisaVista is distributed under the terms of the MIT License. <br/>
 See the [LICENCE](/LICENCE) for more information.

@@ -1,0 +1,28 @@
+{
+  "routerMap": [
+    {
+      "name": "VisaPage",
+      "pageSourceFile": "src/main/ets/pages/VisaPage.ets",
+      "buildFunction": "VisaPageBuilder",
+      "data": {
+        "description": "VisaPage"
+      }
+    },
+    {
+      "name": "VisaDetailPage",
+      "pageSourceFile": "src/main/ets/pages/VisaDetailPage.ets",
+      "buildFunction": "VisaDetailPageBuilder",
+      "data": {
+        "description": "VisaDetailPage"
+      }
+    },
+    {
+      "name": "ComparisonPage",
+      "pageSourceFile": "src/main/ets/pages/ComparisonPage.ets",
+      "buildFunction": "ComparisonPageBuilder",
+      "data": {
+        "description": "ComparisonPage"
+      }
+    }
+  ]
+}

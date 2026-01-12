@@ -1,5 +1,5 @@
-import { CountryVisaInfo } from "../model/CountryVisaInfo";
-import { VISA_DATA } from "../utils/MockDataList";
+import { CountryVisaInfo } from '../model/CountryVisaInfo';
+import { VISA_DATA } from '../utils/MockDataList';
 
 export class VisaDataViewModel
 {
