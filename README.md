@@ -25,7 +25,7 @@ VisaVista is a HarmonyOS-based ArkTS application that enables users to explore a
 
 - **Language**: ArkTS
 - **Framework**: HarmonyOS ArkUI
-- **Libraries**: Router Kit, ArkUI Kit
+- **Libraries**: Navigation Kit, ArkUI Kit
 - **Tools**: DevEco Studio, Simulator, Huawei Watch 5 real device
 
 
