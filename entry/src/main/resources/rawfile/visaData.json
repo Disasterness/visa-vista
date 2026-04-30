@@ -1,26 +1,101 @@
-{
-  "Turkey": {
-    "visaFreeCountries": 110,
-    "eVisaAvailable": true,
-    "passportRank": 54,
-    "note": "Turkish citizens can travel to many countries visa-free including Japan, South Korea, and most of South America."
+[
+  {
+    "countryName": "Japan",
+    "passportRank": 1,
+    "noVisaCountries": 193,
+    "visaCountries": 0,
+    "eVisaCountries": 6,
+    "mediaName": "japan",
+    "note": "Japanese passport holders enjoy extensive visa-free access worldwide, including all G7 countries."
   },
-  "Germany": {
-    "visaFreeCountries": 191,
-    "eVisaAvailable": true,
+  {
+    "countryName": "Germany",
     "passportRank": 2,
+    "noVisaCountries": 191,
+    "visaCountries": 1,
+    "eVisaCountries": 5,
+    "mediaName": "germany",
     "note": "German passport allows access to almost all European and many Asian countries without a visa."
   },
-  "United States": {
-    "visaFreeCountries": 187,
-    "eVisaAvailable": true,
-    "passportRank": 6,
+  {
+    "countryName": "United States",
+    "passportRank": 7,
+    "noVisaCountries": 187,
+    "visaCountries": 4,
+    "eVisaCountries": 10,
+    "mediaName": "united_states",
     "note": "U.S. passport holders enjoy visa-free access to most countries in Europe, Asia, and the Americas."
   },
-  "Argentina": {
-    "visaFreeCountries": 170,
-    "eVisaAvailable": true,
+  {
+    "countryName": "Canada",
+    "passportRank": 8,
+    "noVisaCountries": 186,
+    "visaCountries": 5,
+    "eVisaCountries": 10,
+    "mediaName": "canada",
+    "note": "Canadian citizens have visa-free or visa-on-arrival access to 186 countries and territories."
+  },
+  {
+    "countryName": "Turkey",
+    "passportRank": 54,
+    "noVisaCountries": 110,
+    "visaCountries": 55,
+    "eVisaCountries": 28,
+    "mediaName": "turkey",
+    "note": "Turkish citizens can travel to many countries visa-free including Japan, South Korea, and most of South America."
+  },
+  {
+    "countryName": "China",
+    "passportRank": 62,
+    "noVisaCountries": 80,
+    "visaCountries": 70,
+    "eVisaCountries": 40,
+    "mediaName": "china",
+    "note": "China has been rapidly expanding its visa-free agreements with several countries in recent years."
+  },
+  {
+    "countryName": "Argentina",
     "passportRank": 19,
+    "noVisaCountries": 170,
+    "visaCountries": 20,
+    "eVisaCountries": 5,
+    "mediaName": "argentina",
     "note": "Argentine passport grants visa-free access to much of Europe and Latin America."
+  },
+  {
+    "countryName": "Iran",
+    "passportRank": 92,
+    "noVisaCountries": 45,
+    "visaCountries": 150,
+    "eVisaCountries": 3,
+    "mediaName": "iran",
+    "note": "Iranian citizens require visas for most western countries, with some visa-free options in neighboring regions."
+  },
+  {
+    "countryName": "South Africa",
+    "passportRank": 52,
+    "noVisaCountries": 105,
+    "visaCountries": 60,
+    "eVisaCountries": 30,
+    "mediaName": "south_africa",
+    "note": "South African passport is one of the strongest in Africa, with good access within the continent."
+  },
+  {
+    "countryName": "Switzerland",
+    "passportRank": 3,
+    "noVisaCountries": 190,
+    "visaCountries": 2,
+    "eVisaCountries": 6,
+    "mediaName": "switzerland",
+    "note": "Switzerland's neutral status and strong economy contribute to its highly-ranked passport."
+  },
+  {
+    "countryName": "Syria",
+    "passportRank": 102,
+    "noVisaCountries": 30,
+    "visaCountries": 160,
+    "eVisaCountries": 3,
+    "mediaName": "syria",
+    "note": "The Syrian passport currently has limited visa-free mobility due to ongoing regional instability."
   }
-}
+]
