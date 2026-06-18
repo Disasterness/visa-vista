@@ -5,6 +5,7 @@ export class CountryVisaInfo {
   visaCountries: number
   eVisaCountries: number
   mediaName: string
+  note: string
 
   constructor(
     countryName: string,
@@ -12,12 +13,14 @@ export class CountryVisaInfo {
     noVisaCountries: number,
     visaCountries: number,
     eVisaCountries: number,
-    mediaName: string) {
+    mediaName: string,
+    note: string = '') {
     this.countryName = countryName
     this.passportRank = passportRank
     this.noVisaCountries = noVisaCountries
     this.visaCountries = visaCountries
     this.eVisaCountries = eVisaCountries
     this.mediaName = mediaName
+    this.note = note
   }
 }
